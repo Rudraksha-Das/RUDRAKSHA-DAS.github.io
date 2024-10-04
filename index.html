@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rudraksha Das - Security is an Illusion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #1e1e1e, #444);
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+        
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        #sidebar {
+            width: 250px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s;
+        }
+        
+        #sidebar h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        #sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 10px 0;
+            transition: color 0.3s;
+        }
+        
+        #sidebar a:hover {
+            color: #61dafb;
+        }
+        
+        #content {
+            margin-left: 250px;
+            padding: 40px;
+            width: calc(100% - 250px);
+        }
+        
+        #quote {
+            font-size: 4em;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-100px);
+            animation: fadeInUp 1s forwards 0.5s;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        #bio {
+            font-size: 2em;
+            text-align: center;
+            margin-top: 50px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s forwards 1.5s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #dark-mode-toggle {
+            cursor: pointer;
+            background-color: #61dafb;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #dark-mode-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        #dark-mode-toggle:focus {
+            outline: none;
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                width: 200px;
+            }
+
+            #content {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+
+            #quote {
+                font-size: 3em;
+            }
+
+            #bio {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Dynamic Background Animation */
+        @keyframes backgroundAnimation {
+            0% { background-color: #282c34; }
+            50% { background-color: #3c3f47; }
+            100% { background-color: #282c34; }
+        }
+
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            animation: backgroundAnimation 15s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg"></div>
+
+    <div id="container">
+        <div id="sidebar">
+            <h1>Rudraksha Das</h1>
+            <a href="#quote">Home</a>
+            <a href="#bio">Bio</a>
+            <button id="dark-mode-toggle">Toggle Dark/Light Mode</button>
+        </div>
+
+        <div id="content">
+            <div id="quote">Security is an Illusion</div>
+            <div id="bio">
+                <p>Welcome to my personal page! I'm Rudraksha Das, a passionate security researcher dedicated to uncovering vulnerabilities and enhancing digital safety.</p>
+                <p>Here, I often test for bug bounty hunting. This is for ethical hacking only and any content found here is not for social engineering anyone or endorsing or promoting any illegal content.</p>
+                <p></p>
+                <p>Lorem Ipsum: Substitute of all contents. Legend of all time😎</p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        let isDarkMode = true;
+
+        toggleButton.addEventListener('click', () => {
+            if (isDarkMode) {
+                body.style.backgroundColor = '#fff';
+                body.style.color = '#000';
+                toggleButton.style.backgroundColor = '#282c34';
+                toggleButton.style.color = '#61dafb';
+                toggleButton.innerText = 'Toggle Light/Dark Mode';
+                isDarkMode = false;
+            } else {
+                body.style.backgroundColor = '#282c34';
+                body.style.color = '#fff';
+                toggleButton.style.backgroundColor = '#61dafb';
+                toggleButton.style.color = '#000';
+                toggleButton.innerText = 'Toggle Dark/Light Mode';
+                isDarkMode = true;
+            }
+        });
+    </script>
+
+</body>
+</html>
