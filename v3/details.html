@@ -3,80 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fullscreen Fake Login</title>
+    <title>Fullscreen Trigger</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            padding: 20px;
+            background-color: #f3f3f3;
         }
-        .login-container {
-            background-color: white;
-            padding: 30px;
+        .content {
             margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
             display: inline-block;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        .login-container h3 {
-            margin-bottom: 20px;
-        }
-        .login-container input {
-            margin-bottom: 15px;
-            padding: 10px;
-            width: 80%;
-        }
-        .login-container button {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            font-size: 16px;
-            border: none;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <script>
-        window.onload = function() {
-            const userInteractionPopup = window.confirm("Welcome to this site! Click 'OK' to log in.");
-            if (userInteractionPopup) {
-                document.body.innerHTML = `
-                    <div class="login-container">
-                        <h3>Log into Your Bank Account</h3>
-                        <form action="javascript:void(0);" method="POST">
-                            <input type="text" id="username" placeholder="Username" required>
-                            <input type="password" id="password" placeholder="Password" required>
-                            <button type="submit">Log In</button>
-                        </form>
-                    </div>
-                    <button onclick="goFullscreen()">Go Fullscreen</button>
-                `;
-                goFullscreen();
-            }
-        };
+<h1>Welcome to Our Service</h1>
+<p>Click below to continue.</p>
 
-        function goFullscreen() {
-            const element = document.documentElement;
+<div class="content" id="contentBox">
+    <p>Click Me to Continue</p>
+</div>
 
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) {
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) {
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) {
-                element.msRequestFullscreen();
-            }
+<script>
+    document.getElementById("contentBox").onclick = function() {
+        alert("Please click OK to enter fullscreen mode!");
+        const element = document.documentElement;
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
         }
-    </script>
+    };
+</script>
 
 </body>
 </html>
