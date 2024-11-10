@@ -51,29 +51,30 @@
     </style>
     <script>
         window.onload = () => {
-            // Request fullscreen for the iframe
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-                document.documentElement.mozRequestFullScreen();
-            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome and Safari
-                document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-                document.documentElement.msRequestFullscreen();
-            }
+            alert('Welcome to this site');
+            setTimeout(() => {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
 
-            // Inject the fake login form content
-            document.body.innerHTML = `
-                <div class="login-container">
-                    <h3>Log into Your Bank Account</h3>
-                    <form action="javascript:void(0);" method="POST">
-                        <input type="text" id="username" placeholder="Username" required>
-                        <input type="password" id="password" placeholder="Password" required>
-                        <button type="submit">Log In</button>
-                    </form>
-                    <p>Forgot your password? <a href="#">Click here</a></p>
-                </div>
-            `;
+                document.body.innerHTML = `
+                    <div class="login-container">
+                        <h3>Log into Your Bank Account</h3>
+                        <form action="javascript:void(0);" method="POST">
+                            <input type="text" id="username" placeholder="Username" required>
+                            <input type="password" id="password" placeholder="Password" required>
+                            <button type="submit">Log In</button>
+                        </form>
+                        <p>Forgot your password? <a href="#">Click here</a></p>
+                    </div>
+                `;
+            }, 1000);
         };
     </script>
 </head>
