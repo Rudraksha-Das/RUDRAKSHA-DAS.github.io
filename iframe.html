@@ -1,0 +1,142 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Art of Hacking</title>
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)),
+                        url('https://cdn.jsdelivr.net/npm/your-background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding-top: 80px;
+            overflow-y: scroll;
+        }
+
+        h1, h3 {
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        h1 { font-size: 4em; margin-bottom: 20px; }
+        h3 { font-size: 2em; margin-bottom: 10px; }
+        .quote, .footer {
+            font-size: 1.5em;
+            text-shadow: 0 0 8px #00ff00;
+            animation: text-blur 4s infinite;
+        }
+        .quote { margin-bottom: 30px; }
+        .footer { margin-top: 40px; font-style: italic; }
+
+        @keyframes text-blur {
+            0%, 100% { opacity: 1; filter: blur(0); }
+            50% { opacity: 0.5; filter: blur(2px); }
+        }
+
+        .gif-overlay {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            pointer-events: none;
+        }
+        .gif-container img {
+            width: 100px;
+            height: auto;
+            border: 3px solid #00ff00;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #00ff00;
+            animation: hacker-glow 2s infinite alternate;
+        }
+
+        @keyframes hacker-glow {
+            from { box-shadow: 0 0 15px #00ff00; }
+            to { box-shadow: 0 0 25px #00ff00; }
+        }
+
+        .iframe-container {
+            width: 80%;
+            max-width: 1000px;
+            height: 600px;
+            margin: 0 auto;
+            border: 3px solid #00ff00;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+            overflow: hidden;
+            animation: hacker-flicker 3s infinite;
+        }
+
+        .matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .matrix div {
+            position: absolute;
+            top: 0;
+            color: rgba(0, 255, 0, 0.2);
+            font-size: 18px;
+            font-family: 'Courier New', Courier, monospace;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .iframe-container:hover, .gif-container img:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h3 { font-size: 1.5em; }
+            .gif-container img { width: 70px; }
+            .iframe-container { width: 90%; height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gif-overlay">
+        <div class="gif-container"><img src="https://media1.tenor.com/m/myPHsReL2YIAAAAd/hacker.gif" alt="Hacker GIF"></div>
+        <div class="gif-container"><img src="https://media1.tenor.com/m/qJ_EjDNHqcUAAAAd/usuwam-rajd-hakowanie.gif" alt="Hacker GIF 2"></div>
+        <div class="gif-container"><img src="https://media1.tenor.com/m/W93VsNUYX6MAAAAd/sa-tis-c.gif" alt="Hacker GIF 3"></div>
+    </div>
+
+    <h3><b>Hacking is the quest for truth, disguised as chaos</b></h3>
+    <p class="quote">"In the digital world, knowledge isn’t power. It's the key." — Unknown Hacker</p>
+    <p class="footer">Quest for truth mustn't die; here’s some data dump:</p>
+
+    <div class="iframe-container">
+        <iframe src="https://en.wikipedia.org/wiki/Main_Page" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+
+    <div class="matrix"></div>
+
+    <script>
+        const matrix = document.querySelector('.matrix');
+        const columns = Math.floor(window.innerWidth / 20);
+        for (let i = 0; i < columns; i++) {
+            const column = document.createElement('div');
+            column.textContent = '0 1 0 1 1 0 1 0'.split(' ')
+                                .map(() => Math.random() > 0.5 ? '0' : '1')
+                                .join(' ');
+            column.style.left = `${i * 20}px`;
+            column.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            matrix.appendChild(column);
+        }
+    </script>
+
+
+
+</body></html>
