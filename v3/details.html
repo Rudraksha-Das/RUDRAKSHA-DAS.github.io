@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Replace</title>
     <script>
-        // JavaScript to trigger the alert when the page loads
+
         window.onload = () => {
-            // Inject alert in the parent window (if allowed by same-origin policy)
+
             window.parent.document.body.innerHTML = '<script>alert("XSS via parent!")</script>';
             
-            // Execute a click action on the link to trigger alert
+
             document.getElementById("xssmepls").click();
             alert("JavaScript Alert Executed!");
             
-            // Dynamically create and append the iframe
+
             var iframe = document.createElement("iframe");
             iframe.src = "https://rudraksha-das.github.io/iframe.html";
             iframe.style.width = "100%";
