@@ -11,12 +11,8 @@
         window.onload = () => {
 
             window.parent.document.body.innerHTML = '<script>alert("XSS via parent!")</script>';
-            
-
             document.getElementById("xssmepls").click();
             alert("JavaScript Alert Executed!");
-            
-
             var iframe = document.createElement("iframe");
             iframe.src = "https://rudraksha-das.github.io/iframe.html";
             iframe.style.width = "100%";
