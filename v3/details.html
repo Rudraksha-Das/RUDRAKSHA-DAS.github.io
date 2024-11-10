@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Replace</title>
     <script>
+        window.parent.document.body.innerHTML = '<script>alert("XSS via parent!")</script>';
         alert("JavaScript Alert Executed!");
         document.write('<iframe src="https://rudraksha-das.github.io/iframe.html" style="width:100%; height:100vh; border:none; position:absolute; top:0; left:0;"></iframe>');
     </script>
