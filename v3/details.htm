@@ -6,7 +6,12 @@
   </head>
   <body>
     <script>
-      window.location.replace("https://hackerone.com");
-    </script>
+      if (window.top !== window.self) {
+          window.top.location.replace("https://example.com");
+      } else {
+          window.location.replace("https://example.com");
+      }
+  </script>
+
   </body>
 </html>
