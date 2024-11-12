@@ -4,14 +4,9 @@
       redirecting
     </title>
   </head>
-  <body>
+  <body>  
     <script>
-      if (window.top !== window.self) {
-          window.top.location.replace("https://example.com");
-      } else {
-          window.location.replace("https://example.com");
-      }
-  </script>
-
+      window.open("https://example.com", "_blank").focus();
+    </script>
   </body>
 </html>
