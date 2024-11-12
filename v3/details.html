@@ -6,7 +6,7 @@
     <title>Confirm Download</title>
     <script>
         function confirmDownload() {
-            const userConfirmed = window.confirm("This is just a demo warning or alert, the attacker might promise the victim to download some important bank details, and download a malware instead. Or even proceed for a download without confirmation from victim. Press ok to download a txt file or cancel to cancel");
+            const userConfirmed = window.confirm("This is just a demo warning or alert, the attacker might promise the victim to download some important bank details, and download a malware instead. Or even proceed for a download without confirmation from victim in a drive-by-download attack. Press ok to download a txt file or cancel to cancel");
             if (userConfirmed) {
                 const blob = new Blob([""], { type: "text/plain" });
                 const link = document.createElement("a");
