@@ -1,0 +1,122 @@
+When I looked for what the original url was sending, this was it: jQuery371024010821834755935_1731977199735({
+    "stat": "OK",
+    "results": {
+        "maps": [
+            {
+                "mapurl": "https://brutelogic.com.br/poc.svg",
+                "library": "Green Library",
+                "height": 1350,
+                "ranges": [
+                    {
+                        "startcallno": "CALIF C 1225.M563 ",
+                        "rangeno": 2218,
+                        "callnos": [
+                            {
+                                "start": "CALIF C 1225.M563 ",
+                                "end": "CALIF E 1525.R4 1974"
+                            }
+                        ],
+                        "rangename": "126b",
+                        "coordinates": [
+                            [
+                                877.5,
+                                902.5
+                            ],
+                            [
+                                875.5,
+                                902.5
+                            ],
+                            [
+                                875.5,
+                                956.5
+                            ],
+                            [
+                                877.5,
+                                956.5
+                            ]
+                        ],
+                        "label": "126b",
+                        "callnoDisplay": "CALIF C 1225.M563  <--> CALIF E 1525.R4 1974",
+                        "endcallno": "CALIF E 1525.R4 1974",
+                        "y": 929.5,
+                        "x": 876.5
+                    },
+                    {
+                        "startcallno": "CALIF  . ",
+                        "rangeno": 2234,
+                        "callnos": [
+                            {
+                                "start": "CALIF  . ",
+                                "end": "CALIF S 400.V6 1975"
+                            }
+                        ],
+                        "rangename": "134b",
+                        "coordinates": [
+                            [
+                                711.5,
+                                902.5
+                            ],
+                            [
+                                709.5,
+                                902.5
+                            ],
+                            [
+                                709.5,
+                                956.5
+                            ],
+                            [
+                                711.5,
+                                956.5
+                            ]
+                        ],
+                        "label": "134b",
+                        "callnoDisplay": "CALIF  .  <--> CALIF S 400.V6 1975",
+                        "endcallno": "CALIF S 400.V6 1975",
+                        "y": 929.5,
+                        "x": 710.5
+                    },
+                    {
+                        "startcallno": "CALIF  . ",
+                        "rangeno": 2232,
+                        "callnos": [
+                            {
+                                "start": "CALIF  . ",
+                                "end": "CALIF M 725.D72 1991"
+                            }
+                        ],
+                        "rangename": "133b",
+                        "coordinates": [
+                            [
+                                732.5,
+                                902.5
+                            ],
+                            [
+                                730.5,
+                                902.5
+                            ],
+                            [
+                                730.5,
+                                956.5
+                            ],
+                            [
+                                732.5,
+                                956.5
+                            ]
+                        ],
+                        "label": "133b",
+                        "callnoDisplay": "CALIF  .  <--> CALIF M 725.D72 1991",
+                        "endcallno": "CALIF M 725.D72 1991",
+                        "y": 929.5,
+                        "x": 731.5
+                    }
+                ],
+                "width": 1800,
+                "directions": "<b>From Green West Entrance</b><br />\r\n<ul>\r\n<li>- Walk to the right of the grand staircase and proceed to the end of the hall</li>\r\n<li>- Turn left and then immediately right and enter the Social Science Resource Center</li>\r\n<li>- Turn right and enter the set of closed double doors labelled \"The Jonsson Library of Government Documents\"</li>\r\n<li>- Go down 1 floor</li>\r\n</ul>\r\n\r\n\r\n<b>From Green East Entrance:</b><br />\r\n<ul>\r\n<li>- Turn left after the turnstile and proceed to wall</li>\r\n<li>- Turn right and walk to the double doors on your left</li>\r\n<li>- Turn left through two sets of double doors and walk to the open area</li>\r\n<li>- At the center of the Social Science Resource Center, turn left and enter the set of closed double doors labelled \"The Jonsson Library of Government Documents\"</li>\r\n<li>- Go down 1 floor</li>\r\n</ul><br />",
+                "floorname": "Bing Wing West Stacks 1 (W1)"
+            }
+        ],
+        "callno": "CALIF E190 .A223",
+        "location": "GRE-CAL-DOCS",
+        "library": "GREEN"
+    }
+})
