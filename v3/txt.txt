@@ -1,1 +1,5 @@
-// Hacker One testing
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.000
+<script>alert(1)</script>
