@@ -3,9 +3,473 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Execute All JavaScript Functions</title>
+    <title>404 | LOST</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #00ff41;
+            --green-dim: #00cc33;
+            --green-glow: rgba(0, 255, 65, 0.15);
+            --red: #ff0033;
+            --cyan: #00e5ff;
+            --bg: #0a0a0f;
+            --bg-card: rgba(15, 15, 25, 0.85);
+            --text: #c0c0c0;
+            --border: rgba(0, 255, 65, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #matrix-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.12;
+        }
+
+
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.08) 2px,
+                rgba(0, 0, 0, 0.08) 4px
+            );
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0,255,65,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,65,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .glitch-wrapper {
+            margin-bottom: 1.5rem;
+        }
+
+        .glitch {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(6rem, 18vw, 11rem);
+            font-weight: 700;
+            color: var(--green);
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 20px var(--green-glow), 0 0 60px rgba(0,255,65,0.08);
+            animation: flicker 4s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: '404';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+        }
+
+        .glitch::before {
+            color: var(--cyan);
+            z-index: -1;
+            animation: glitch-1 3s infinite linear alternate-reverse;
+            clip-path: inset(0 0 60% 0);
+        }
+
+        .glitch::after {
+            color: var(--red);
+            z-index: -2;
+            animation: glitch-2 2.5s infinite linear alternate-reverse;
+            clip-path: inset(40% 0 0 0);
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(3px, -2px); }
+            60% { transform: translate(-2px, 1px); }
+            80% { transform: translate(2px, -3px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { transform: translate(0); }
+            25% { transform: translate(3px, 2px); }
+            50% { transform: translate(-2px, -3px); }
+            75% { transform: translate(2px, 3px); }
+        }
+
+        @keyframes flicker {
+            0%, 95%, 100% { opacity: 1; }
+            96% { opacity: 0.8; }
+            97% { opacity: 1; }
+            98% { opacity: 0.6; }
+            99% { opacity: 1; }
+        }
+
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border: 1px solid var(--red);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            background: rgba(255, 0, 51, 0.06);
+        }
+
+        .status-badge .dot {
+            width: 6px; height: 6px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,0,51,0.6); }
+            50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255,0,51,0); }
+        }
+
+
+        .terminal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: left;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);
+            margin-bottom: 2rem;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid var(--border);
+            gap: 8px;
+        }
+
+        .terminal-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+        }
+        .terminal-dot.r { background: #ff5f57; }
+        .terminal-dot.y { background: #ffbd2e; }
+        .terminal-dot.g { background: #28c840; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            font-size: 0.82rem;
+            line-height: 1.9;
+            min-height: 200px;
+        }
+
+        .prompt { color: var(--green); }
+        .cmd { color: #e0e0e0; }
+        .comment { color: #555; }
+        .error { color: var(--red); }
+        .info { color: var(--cyan); }
+        .warning { color: #ffbd2e; }
+        .highlight { color: var(--green); }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.1em;
+            background: var(--green);
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .line { opacity: 0; animation: fadeInLine 0.3s forwards; }
+
+        @keyframes fadeInLine {
+            to { opacity: 1; }
+        }
+
+
+        .meta-strip {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 0.7rem;
+            color: #555;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .meta-item span {
+            color: var(--green-dim);
+        }
+
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: var(--bg);
+            border: 1px solid var(--green);
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--green);
+            box-shadow: 0 0 25px var(--green-glow), inset 0 0 25px var(--green-glow);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0,229,255,0.1);
+        }
+
+
+        .hex-particle {
+            position: fixed;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: rgba(0, 255, 65, 0.08);
+            z-index: 1;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+
+        @media (max-width: 600px) {
+            .terminal-body { font-size: 0.72rem; padding: 15px; }
+            .meta-strip { gap: 1rem; }
+            .actions { flex-direction: column; align-items: center; }
+        }
+    </style>
 </head>
 <body>
-    <script>alert("Hell yeah, XSSed + cookied: " + document.cookie)</script>
+
+    <canvas id="matrix-bg"></canvas>
+    <div class="scanlines"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="container">
+        <div class="glitch-wrapper">
+            <div class="glitch">404</div>
+        </div>
+
+        <div class="status-badge">
+            <span class="dot"></span>
+            Resource Not Found
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot r"></span>
+                <span class="terminal-dot y"></span>
+                <span class="terminal-dot g"></span>
+                <span class="terminal-title">sec@researcher ~ /investigation</span>
+            </div>
+            <div class="terminal-body" id="terminal-output">
+
+            </div>
+        </div>
+
+        <div class="meta-strip">
+            <div class="meta-item">Protocol <span>HTTPS/2</span></div>
+            <div class="meta-item">Status <span>404</span></div>
+            <div class="meta-item">Threat Level <span>None</span></div>
+            <div class="meta-item">Timestamp <span id="ts"></span></div>
+        </div>
+
+        <div class="actions">
+            <a href="/" class="btn btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-4 0v-6a1 1 0 011-1h2a1 1 0 011 1v6"/></svg>
+                Return Home
+            </a>
+            <a href="javascript:history.back()" class="btn btn-ghost">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5m7-7l-7 7 7 7"/></svg>
+                Go Back
+            </a>
+        </div>
+    </div>
+
+    <script>
+
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        let w, h, cols, drops;
+        const chars = 'アイウエオカキクケコサシスセソ01ABCDEF{}[]<>/\;:=+-*&^%$#@!~'.split('');
+
+        function initMatrix() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+            cols = Math.floor(w / 18);
+            drops = Array(cols).fill(1);
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 15, 0.06)';
+            ctx.fillRect(0, 0, w, h);
+            ctx.fillStyle = '#00ff41';
+            ctx.font = '14px JetBrains Mono';
+            for (let i = 0; i < cols; i++) {
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(char, i * 18, drops[i] * 18);
+                if (drops[i] * 18 > h && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+            requestAnimationFrame(drawMatrix);
+        }
+
+        initMatrix();
+        drawMatrix();
+        window.addEventListener('resize', initMatrix);
+
+
+        const lines = [
+            { type: 'input', text: 'curl -I https://rudraksha-das.github.io' + window.location.pathname },
+            { type: 'output', text: '<span class="error">HTTP/2 404 Not Found</span>' },
+            { type: 'output', text: '<span class="comment">server: rudraksha-das.gitHub.io</span>' },
+            { type: 'output', text: '<span class="comment">content-type: text/html; charset=utf-8</span>' },
+            { type: 'blank' },
+            { type: 'input', text: 'nmap -sV --script=vuln target_page' },
+            { type: 'output', text: '<span class="warning">⚠  Target unreachable — page does not exist</span>' },
+            { type: 'output', text: '<span class="info">ℹ  No vulnerabilities detected. This is just a 404.</span>' },
+            { type: 'blank' },
+            { type: 'input', text: 'echo "The page you seek has been lost in the void."' },
+            { type: 'output', text: '<span class="highlight">The page you seek has been lost in the void.</span>' },
+            { type: 'cursor' },
+        ];
+
+        const terminal = document.getElementById('terminal-output');
+        let lineIndex = 0;
+
+        function renderLine() {
+            if (lineIndex >= lines.length) return;
+            const line = lines[lineIndex];
+            const div = document.createElement('div');
+            div.classList.add('line');
+            div.style.animationDelay = '0s';
+
+            if (line.type === 'input') {
+                div.innerHTML = '<span class="prompt">❯ </span><span class="cmd">' + line.text + '</span>';
+            } else if (line.type === 'output') {
+                div.innerHTML = '  ' + line.text;
+            } else if (line.type === 'blank') {
+                div.innerHTML = '&nbsp;';
+            } else if (line.type === 'cursor') {
+                div.innerHTML = '<span class="prompt">❯ </span><span class="cursor"></span>';
+            }
+
+            terminal.appendChild(div);
+            terminal.scrollTop = terminal.scrollHeight;
+            lineIndex++;
+            const delay = line.type === 'input' ? 800 : line.type === 'blank' ? 300 : 400;
+            setTimeout(renderLine, delay);
+        }
+
+        setTimeout(renderLine, 600);
+
+        document.getElementById('ts').textContent = new Date().toISOString().slice(0, 19) + 'Z';
+
+
+        function spawnHex() {
+            const el = document.createElement('div');
+            el.classList.add('hex-particle');
+            const hexVal = '0x' + Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0');
+            el.textContent = hexVal;
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (15 + Math.random() * 25) + 's';
+            document.body.appendChild(el);
+            el.addEventListener('animationend', () => el.remove());
+        }
+        setInterval(spawnHex, 2000);
+        for (let i = 0; i < 8; i++) setTimeout(spawnHex, i * 500);
+    </script>
 </body>
 </html>
